@@ -42,7 +42,8 @@ $ /path/to/util/sysmaint.sh
 ```
 
 This script is meant to run in interactive shell since you can be prompted to
-confirm at some stages.
+confirm at some stages. I'm working on making it fully automated.
+You should also be able to escalate privileges since a lot of modules use sudo.
 
 ## Credits
 Made by **nz** aka **nunzayin** aka **Nick Zaber**

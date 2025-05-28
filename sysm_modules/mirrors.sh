@@ -1,7 +1,7 @@
 # This module refreshes Arch Linux mirrors
 
 MODULE="mirrors.sh"
-DEPS=("rate-mirrors")
+DEPS=("rate-mirrors" "sudo")
 
 if check_deps; then
     stage "REFRESHING MIRRORS"

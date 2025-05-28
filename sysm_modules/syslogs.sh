@@ -2,7 +2,7 @@
 # (systemd is pure evil)
 
 MODULE="syslogs.sh"
-DEPS=("journalctl")
+DEPS=("journalctl" "sudo")
 
 if check_deps; then
     stage "CLEARING SYSTEM LOGS"
