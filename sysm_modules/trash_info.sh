@@ -6,7 +6,7 @@ DEPS=()
 
 if check_deps; then
     stage "TRASH CAN INFO"
-    trash_size="$(du -sh .local/share/Trash/)"
+    trash_size="$(du -sh $HOME/.local/share/Trash/)"
     echo "Trash size is $trash_size"
     echo "Run 'trash-empty' if you feel it too large"
 fi
