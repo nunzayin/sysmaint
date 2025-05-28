@@ -45,7 +45,7 @@ MODULES=$(dirname "$0")/sysm_modules
 
 SYSM_INCLUDE="$HOME/.config/sysm_include.sh"
 if ! [[ -e $SYSM_INCLUDE ]]; then
-    echo "echo '$SYSM_INCLUDE is not configured. Consider reading https://github.com/nunzayin/util#configuring'" > $SYSM_INCLUDE
+    echo "echo '$SYSM_INCLUDE is not configured. Consider reading https://github.com/nunzayin/sysmaint#configuring'" > $SYSM_INCLUDE
 fi
 . $SYSM_INCLUDE
 
