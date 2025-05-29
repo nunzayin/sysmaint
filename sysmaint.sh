@@ -41,7 +41,7 @@ function check_deps() {
 # Use $MODULES variable in your sysm_include.sh to include modules provided in repo.
 # Example:
 #   . $MODULES/example.sh
-MODULES=$(dirname "$0")/sysm_modules
+MODULES="$(dirname "$(realpath "$0")")"/sysm_modules
 
 SYSM_INCLUDE="$HOME/.config/sysm_include.sh"
 if ! [[ -e $SYSM_INCLUDE ]]; then
