@@ -5,5 +5,5 @@ DEPS=("yay")
 
 if check_deps; then
     stage "UPDATING SYSTEM"
-    yay --answerdiff None --answerclean None --mflags "--noconfirm" -Syu
+    yes "" | yay --answerdiff None --answerclean None --mflags "--noconfirm" -Syu
 fi
