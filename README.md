@@ -38,8 +38,17 @@ Of course since it's just a shell script you are free to add there whatever you 
 ## Usage
 
 ```bash
-$ /path/to/util/sysmaint.sh
+$ /path/to/util/sysmaint.sh [MODE] [MODULES...]
 ```
+
+`sysmaint` provides 4 execution modes:
+- normal mode (no arguments): execute all the modules specified in `sysm_include`
+- whitelist mode (invoke with `-w` or `--whitelist`): same as normal, but only the
+modules specified in arguments AND `sysm_include` will be executed.
+- blacklist mode (`-b` or `--blacklist`): same as normal, but only the
+modules specified in `sysm_include` but NOT in arguments will be executed.
+- query mode (`-q` or `--query`) - print module names specified in `sysm_include` in
+execution order, do not perform any executions.
 
 This script is meant to run in interactive shell since you can be prompted to
 confirm at some stages. I'm working on making it fully automated.
