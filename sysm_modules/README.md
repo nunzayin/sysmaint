@@ -51,7 +51,7 @@ This function requires predefined MODULE and DEPS environment variables for each
 These two vars represent module's header:
 
 ```bash
-MODULE="module's name" # Traditionally the name is the same as its filename
+MODULE="module's name" # Traditionally the name is the same as its filename without extension
 DEPS=("yay" "fzf" "paccache") # Note that DEPS var should be iterable
 ```
 

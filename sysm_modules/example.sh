@@ -1,7 +1,7 @@
 # Example module. Put your documentation here.
 # Also see template.sh and real modules
 
-MODULE="example.sh" # Module name. Traditionally same as its filename.
+MODULE="example" # Module name. Traditionally same as its filename without extension.
 # Dependencies list. An iterable variable of commands that are used in the module but can be not presented in environment.
 DEPS=("echo" "test")
 

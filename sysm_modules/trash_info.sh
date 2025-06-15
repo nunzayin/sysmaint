@@ -1,7 +1,7 @@
 # Shows some info about main trash size.
 # This is important for me since I fear using rm and almost ALWAYS use trash-cli
 
-MODULE="trash_info.sh"
+MODULE="trash_info"
 DEPS=()
 
 if check_deps; then

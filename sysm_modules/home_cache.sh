@@ -1,6 +1,6 @@
 # This module clears $HOME/.cache
 
-MODULE="home_cache.sh"
+MODULE="home_cache"
 DEPS=("trash")
 
 if check_deps; then

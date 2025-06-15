@@ -1,7 +1,7 @@
 # Pull git repos by their absolute paths listed in the REPOS variable.
 # Set this variable in your sysm_include.
 
-MODULE="git_pull.sh"
+MODULE="git_pull"
 DEPS=("git")
 
 if check_deps; then

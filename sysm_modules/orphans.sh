@@ -1,6 +1,6 @@
 # This module deletes Arch and AUR orphaned packages using yay.
 
-MODULE="orphans.sh"
+MODULE="orphans"
 DEPS=("yay")
 
 if check_deps; then

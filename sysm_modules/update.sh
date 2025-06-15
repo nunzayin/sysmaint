@@ -1,6 +1,6 @@
 # This module updates Arch and AUR packages using yay.
 
-MODULE="update.sh"
+MODULE="update"
 DEPS=("yay")
 
 if check_deps; then
