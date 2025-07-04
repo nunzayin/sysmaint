@@ -8,7 +8,7 @@ if check_deps; then
     CURRENT_DIR="$(pwd)"
     for REPO in ${REPOS[*]}; do
         cd $REPO
-        git pull -q
+        git pull &>> "$OUT"
     done
     cd $CURRENT_DIR
 fi

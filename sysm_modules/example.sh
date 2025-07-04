@@ -9,13 +9,14 @@ DEPS=("echo" "test")
 if check_deps; then # check_deps reads $MODULE and $DEPS and returns true (exit code 0) if everything is okay
     # Here's the module body
     # It will be processed only if dependency check succeded
-    echo "I'm a dummy example module."
-    echo "I do nothing but echoing to stdout!"
+    echo "I'm a dummy example module." &>> "$OUT"
+    # Note that info is usually redirected to $OUT
+    echo "I do nothing but echoing to stdout!" &>> "$OUT"
 else
     # Here's module fallback body. Usually unnecessary.
     # Use it for commands that should be executed if dependencies are not satisfied.
-    echo "Hey, something's missing!"
-    echo "I'm gonna dd if=/dev/zero of=/dev/self!"
+    echo "Hey, something's missing!" &>> "$OUT"
+    echo "I'm gonna dd if=/dev/zero of=/dev/self!" &>> "$OUT"
 fi
 # Module footer. Usually unnecessary.
 # Use it for commands that will run anyways.

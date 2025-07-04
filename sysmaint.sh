@@ -59,7 +59,7 @@ function check_deps() {
             for DEP in ${DEPS[*]}; do
                 if ! [[ -n "$(command -v $DEP)" ]]; then
                     MISSING_DEPS=1
-                    echo "Missing dependency \"$DEP\" for \"$MODULE\""
+                    echo "Missing dependency \"$DEP\" for \"$MODULE\"" &>> "$OUT"
                 fi
             done
             return $MISSING_DEPS
@@ -77,6 +77,16 @@ function check_deps() {
 # Example:
 #   . $MODULES/example.sh
 MODULES="$(dirname "$(realpath "$0")")"/sysm_modules
+
+# Override output direction with init_out in your sysm_include to redirect logging output
+function init_out() {
+# Usage:
+#   init_out FILENAME
+# Redirects the whole stdout and stderr to FILENAME. Clears file initially.
+    OUT="$1"
+    echo "Sysmaint iteration at $(date)" &> "$OUT"
+}
+init_out "$HOME/.cache/sysm_log.txt"
 
 SYSM_INCLUDE="$HOME/.config/sysm_include.sh"
 if ! [[ -e $SYSM_INCLUDE ]]; then

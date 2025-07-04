@@ -4,5 +4,5 @@ MODULE="home_cache"
 DEPS=("trash")
 
 if check_deps; then
-    trash ~/.cache/*
+    trash -v ~/.cache/* &>> "$OUT"
 fi

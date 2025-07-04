@@ -5,6 +5,6 @@ MODULE="pacman_cache"
 DEPS=("paccache")
 
 if check_deps; then
-    paccache -qvrk2
-    paccache -qruk0
+    paccache -vrk2 &>> "$OUT"
+    paccache -ruk0 &>> "$OUT"
 fi

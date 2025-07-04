@@ -4,10 +4,10 @@ MODULE="mirrors"
 DEPS=("rate-mirrors" "sudo")
 
 if check_deps; then
-    rate-mirrors arch | sudo tee /etc/pacman.d/mirrorlist.new > /dev/null
-    if [[ $(cat /etc/pacman.d/mirrorlist.new | wc -l) -gt 2 ]]; then
-        sudo rename mirrorlist.new mirrorlist /etc/pacman.d/mirrorlist.new
+    rate-mirrors arch | sudo tee /etc/pacman.d/mirrorlist.new &>> "$OUT"
+    if [[ $(cat /etc/pacman.d/mirrorlist.new | wc -l 2>> "$OUT") -gt 2 ]]; then
+        sudo rename mirrorlist.new mirrorlist /etc/pacman.d/mirrorlist.new 2>> "$OUT"
     else
-        echo "Errors were encountered when generating mirrorlist"
+        echo "Errors were encountered when generating mirrorlist" &>> "$OUT"
     fi
 fi
