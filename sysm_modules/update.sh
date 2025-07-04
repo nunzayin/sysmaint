@@ -4,5 +4,5 @@ MODULE="update"
 DEPS=("yay")
 
 if check_deps; then
-    yes "" | yay --answerdiff None --answerclean None --mflags "--noconfirm" -Syu
+    yes "" | yay --answerdiff None --answerclean None --mflags "--noconfirm" -Syu > /dev/null
 fi
