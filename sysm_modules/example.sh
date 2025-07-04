@@ -6,7 +6,7 @@ MODULE="example" # Module name. Traditionally same as its filename without exten
 DEPS=("echo" "test")
 
 # Start your module body with checking dependencies:
-if check_deps; then # check_deps reads $MODULE and $DEPS and returns true (exit code 0) if everything is okay
+if module_prolog; then # module_prolog reads $MODULE and $DEPS and returns true (exit code 0) if everything is okay
     # Here's the module body
     # It will be processed only if dependency check succeded
     echo "I'm a dummy example module." &>> "$OUT"

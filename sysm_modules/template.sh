@@ -3,6 +3,6 @@
 MODULE="MODULE_NAME"
 DEPS=()
 
-if check_deps; then
+if module_prolog; then
 
 fi

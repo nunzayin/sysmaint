@@ -4,7 +4,7 @@
 MODULE="git_pull"
 DEPS=("git")
 
-if check_deps; then
+if module_prolog; then
     CURRENT_DIR="$(pwd)"
     for REPO in ${REPOS[*]}; do
         cd $REPO

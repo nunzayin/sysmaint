@@ -4,7 +4,7 @@
 MODULE="pacman_cache"
 DEPS=("paccache")
 
-if check_deps; then
+if module_prolog; then
     paccache -vrk2 &>> "$OUT"
     paccache -ruk0 &>> "$OUT"
 fi

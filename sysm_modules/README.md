@@ -11,15 +11,15 @@ by including it in your `sysm_include.sh` (see the main README).
 
 ## Features
 
-### Dependency check
+### Module prolog
 
-The sysmaint provides a helper function `check_deps` which can be used in the `if`
+The sysmaint provides a helper function `module_prolog` which can be used in the `if`
 statements to determine whether dependencies are satisfied or not while also
-printing all the missing dependencies.
+informing about all the missing dependencies. Also performs other jobs according to the mode.
 
 ```bash
 Usage:
-    check_deps
+    module_prolog
 ```
 
 This function requires predefined MODULE and DEPS environment variables for each module.

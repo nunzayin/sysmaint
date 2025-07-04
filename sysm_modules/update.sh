@@ -3,6 +3,6 @@
 MODULE="update"
 DEPS=("yay")
 
-if check_deps; then
+if module_prolog; then
     yes "" | yay --answerdiff None --answerclean None --mflags "--noconfirm" -Syu &>> "$OUT"
 fi

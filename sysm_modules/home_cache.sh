@@ -3,6 +3,6 @@
 MODULE="home_cache"
 DEPS=("trash")
 
-if check_deps; then
+if module_prolog; then
     trash -v ~/.cache/* &>> "$OUT"
 fi

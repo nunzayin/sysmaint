@@ -31,14 +31,15 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
-function check_deps() {
+function module_prolog() {
 # Usage:
-#   check_deps
+#   module_prolog
 # Env:
 #   MODULE - module name (string)
 #   DEPS - iterable list of commands used (dependencies)
 # Performs dependencies check for current MODULE by looking for commands listed in DEPS.
-# Returns exit code 0 if all the dependencies are satisfied
+# Returns exit code 0 if all the dependencies are satisfied.
+# If in query mode, does nothing, prints module name and returns 1.
     case "$MODE" in
         "normal" | "whitelist" | "blacklist")
             if [[ ( "$MODE" = "whitelist" ) || ( "$MODE" = "blacklist" ) ]]; then

@@ -4,6 +4,6 @@
 MODULE="syslogs"
 DEPS=("journalctl" "sudo")
 
-if check_deps; then
+if module_prolog; then
     sudo journalctl --vacuum-time=7d &>> "$OUT"
 fi
