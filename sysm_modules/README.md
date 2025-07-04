@@ -11,31 +11,6 @@ by including it in your `sysm_include.sh` (see the main README).
 
 ## Features
 
-### `stage`
-
-```bash
-Usage:
-    stage STRING
-```
-
-The `stage` command provides a simple way to announce some important information.
-It prints a given STRING separated from the other output with line breaks and
-horizontal rules.
-
-Example: issued command
-
-```bash
-stage "A BIG STAGE ANNOUNCEMENT!!!"
-```
-
-will print out
-
-```
-----------------------------------------------------
-A BIG STAGE ANNOUNCEMENT!!!
-----------------------------------------------------
-```
-
 ### Dependency check
 
 The sysmaint provides a helper function `check_deps` which can be used in the `if`

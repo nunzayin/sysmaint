@@ -31,15 +31,6 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
-function stage() {
-# Usage:
-#   stage STAGE_NAME
-# Just a macros to print a fancy header for the following stage of the script.
-    echo -e "\n----------------------------------------------------"
-    echo $1
-    echo -e "----------------------------------------------------\n"
-}
-
 function check_deps() {
 # Usage:
 #   check_deps
@@ -61,24 +52,16 @@ function check_deps() {
                 if [[ ( ( "$MODE" = "whitelist" ) && ( $IS_MODULE_IN_ARGS -eq 0 ) ) \
                     || ( ( "$MODE" = "blacklist" ) && ( $IS_MODULE_IN_ARGS -eq 1 ) ) ]]
                 then
-                    echo "\"$MODULE\" was excluded from execution."
                     return 1
                 fi
             fi
-            echo -e "\n----------------------------------------------------"
-            echo -e "\nChecking dependencies for module \"$MODULE\"..."
             local MISSING_DEPS=0
             for DEP in ${DEPS[*]}; do
                 if ! [[ -n "$(command -v $DEP)" ]]; then
                     MISSING_DEPS=1
-                    echo "Missing dependency: $DEP"
+                    echo "Missing dependency \"$DEP\" for \"$MODULE\""
                 fi
             done
-            if [[ $MISSING_DEPS -ne 0 ]]; then
-                echo "Satisfy the dependencies above to use $MODULE."
-            else
-                echo "All seems good to go :D"
-            fi
             return $MISSING_DEPS
             ;;
         "query")
@@ -101,7 +84,4 @@ if ! [[ -e $SYSM_INCLUDE ]]; then
 fi
 . $SYSM_INCLUDE
 
-if [[ "$MODE" != "query" ]]; then
-    stage "SYSTEM MAINTENANCE COMPLETE"
-fi
 exit 0

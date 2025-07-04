@@ -6,11 +6,9 @@ DEPS=("git")
 
 if check_deps; then
     CURRENT_DIR="$(pwd)"
-    stage "PULLING GIT REPOS"
     for REPO in ${REPOS[*]}; do
         cd $REPO
-        echo "Pulling \"$REPO\"..."
-        git pull
+        git pull -q
     done
     cd $CURRENT_DIR
 fi
