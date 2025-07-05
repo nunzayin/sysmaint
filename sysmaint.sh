@@ -57,7 +57,7 @@ function module_prolog() {
                 fi
             fi
             local MISSING_DEPS=0
-            for DEP in ${DEPS[*]}; do
+            for DEP in ${DEPS[@]}; do
                 if ! [[ -n "$(command -v $DEP)" ]]; then
                     MISSING_DEPS=1
                     echo "Missing dependency \"$DEP\" for \"$MODULE\"" &>> "$OUT"

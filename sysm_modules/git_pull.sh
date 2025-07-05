@@ -6,7 +6,7 @@ DEPS=("git")
 
 if module_prolog; then
     CURRENT_DIR="$(pwd)"
-    for REPO in ${REPOS[*]}; do
+    for REPO in ${REPOS[@]}; do
         cd $REPO
         git pull &>> "$OUT"
     done
