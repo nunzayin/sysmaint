@@ -35,6 +35,42 @@ DEPS=("yay" "fzf" "paccache") # Note that DEPS var should be iterable
 > module. For example, you have some command like `yay -Qqe | fzf`, so you should add
 > `"yay"` and `"fzf"`.
 
+### Logging
+
+`sysmaint` introduces `$OUT` variable that contains a filename for logging. Use this variable
+to redirect all the stdout and stderr user info like so:
+
+```bash
+rm -rfv ~/.cache/* &>> "$OUT"
+```
+
+If you want to use `echo` to echo some user info, instead of redirecting manually you can use
+`sysm_log` wrapper:
+
+```bash
+Usage:
+    sysm_log [ARGS...]
+```
+
+Example:
+
+```bash
+sysm_log "I echo to the $OUT!"
+```
+
+Default log file is `$HOME/.sysm_log`. You can override it using `init_out`:
+
+```bash
+Usage:
+    init_out FILENAME
+```
+
+Example:
+
+```bash
+init_out $HOME/path/to/log_file.txt
+```
+
 ## Creating a module
 
 Create a file where you want. Name it as you want, traditionally since it's a shell script and
@@ -54,7 +90,7 @@ Simply add the following line to your `sysm_include.sh`:
 > The dot at the beginning of the line <ins>should</ins> be whitespace separated from the filename.
 > See `man 1p dot` for more info.
 
-sysmaint also provides $MODULES variable so you can add modules from this directory:
+sysmaint also provides `$MODULES` variable so you can add modules from this directory:
 
 ```bash
 . $MODULES/example.sh

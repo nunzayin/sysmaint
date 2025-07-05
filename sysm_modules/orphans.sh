@@ -7,5 +7,7 @@ if module_prolog; then
     orphaned=$(yay -Qqdt | tr "\n" " " 2>> "$OUT")
     if [ -n "$orphaned" ]; then
         yes "" | yay -Rns $orphaned &>> "$OUT"
+    else
+        sysm_log "No orphaned packages to remove."
     fi
 fi

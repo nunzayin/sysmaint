@@ -50,9 +50,12 @@ modules specified in `sysm_include` but NOT in arguments will be executed.
 - query mode (`-q` or `--query`) - print module names specified in `sysm_include` in
 execution order, do not perform any executions.
 
-This script is meant to run in interactive shell since you can be prompted to
-confirm at some stages. I'm working on making it fully automated.
-You should also be able to escalate privileges since a lot of modules use sudo.
+You should be able to escalate privileges since a lot of modules use sudo. Using sysmaint as root
+will lead to undefined behavior.
+
+> [!WARNING]
+> You can use `NOPASSWD` in you sudo config to keep sysmaint's output pretty BUT be careful
+> on what modules you are using and what do they do. You were warned.
 
 ## Credits
 Made by **nz** aka **nunzayin** aka **Nick Zaber**

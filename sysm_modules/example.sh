@@ -10,13 +10,13 @@ if module_prolog; then # module_prolog reads $MODULE and $DEPS and returns true 
     # Here's the module body
     # It will be processed only if dependency check succeded
     echo "I'm a dummy example module." &>> "$OUT"
-    # Note that info is usually redirected to $OUT
-    echo "I do nothing but echoing to stdout!" &>> "$OUT"
+    # Note that info is usually redirected to $OUT. When echoing something, you can use sysm_log
+    sysm_log "I do nothing but echoing to $OUT!"
 else
     # Here's module fallback body. Usually unnecessary.
     # Use it for commands that should be executed if dependencies are not satisfied.
-    echo "Hey, something's missing!" &>> "$OUT"
-    echo "I'm gonna dd if=/dev/zero of=/dev/self!" &>> "$OUT"
+    sysm_log "Hey, something's missing!"
+    sysm_log "I'm gonna dd if=/dev/zero of=/dev/self!"
 fi
 # Module footer. Usually unnecessary.
 # Use it for commands that will run anyways.

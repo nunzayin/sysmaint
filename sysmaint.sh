@@ -31,6 +31,22 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
+function dline() {
+# Usage:
+#   dline [ARGS...]
+# clears current stdout line and performs echoing with ARGS on it.
+    echo -ne "\r"$@"\033[K"
+}
+
+function sysm_log() {
+# Usage:
+#   sysm_log [ARGS...]
+# Env:
+#   OUT - output file name (init with init_out)
+# Echoes ARGS to specified output filename.
+    echo $@ &>> $OUT
+}
+
 function module_prolog() {
 # Usage:
 #   module_prolog
@@ -42,6 +58,7 @@ function module_prolog() {
 # If in query mode, does nothing, prints module name and returns 1.
     case "$MODE" in
         "normal" | "whitelist" | "blacklist")
+            sysm_log "[SYSM] Entered \"$MODULE\""
             if [[ ( "$MODE" = "whitelist" ) || ( "$MODE" = "blacklist" ) ]]; then
                 local IS_MODULE_IN_ARGS=0
                 for MOD in "${ARGS_MODULES[@]}"; do
@@ -53,6 +70,7 @@ function module_prolog() {
                 if [[ ( ( "$MODE" = "whitelist" ) && ( $IS_MODULE_IN_ARGS -eq 0 ) ) \
                     || ( ( "$MODE" = "blacklist" ) && ( $IS_MODULE_IN_ARGS -eq 1 ) ) ]]
                 then
+                    sysm_log "[SYSM] \"$MODULE\" was excluded from execution."
                     return 1
                 fi
             fi
@@ -60,9 +78,16 @@ function module_prolog() {
             for DEP in "${DEPS[@]}"; do
                 if ! [[ -n "$(command -v $DEP)" ]]; then
                     MISSING_DEPS=1
-                    echo "Missing dependency \"$DEP\" for \"$MODULE\"" &>> "$OUT"
+                    sysm_log "[SYSM] Missing dependency \"$DEP\" for \"$MODULE\""
                 fi
             done
+            if [[ $MISSING_DEPS -eq 0 ]]; then
+                sysm_log "[SYSM] Dependencies are satisfied for \"$MODULE\", executing it"
+                dline "Executing \"$MODULE\"..."
+            else
+                sysm_log "[SYSM] Satisfy dependencies above to use \"$MODULE\""
+                dline
+            fi
             return $MISSING_DEPS
             ;;
         "query")
@@ -83,16 +108,23 @@ MODULES="$(dirname "$(realpath "$0")")"/sysm_modules
 function init_out() {
 # Usage:
 #   init_out FILENAME
-# Redirects the whole stdout and stderr to FILENAME. Clears file initially.
+# Sets OUT env var to FILENAME. Clears file initially.
+# Use OUT to redirect your stdout and/or stderr to log file.
     OUT="$1"
-    echo "Sysmaint iteration at $(date)" &> "$OUT"
+    echo "[SYSM] Intitialized log file at $(date)" &> "$OUT"
 }
-init_out "$HOME/.cache/sysm_log.txt"
+init_out "$HOME/.sysm_log"
+sysm_log "[SYSM] Started sysmaint iteration at $(date)"
 
 SYSM_INCLUDE="$HOME/.config/sysm_include.sh"
+INCLUDE_ERR="$SYSM_INCLUDE is not configured. Consider reading https://github.com/nunzayin/sysmaint#configuring"
+sysm_log "[SYSM] Trying to include $SYSM_INCLUDE..."
 if ! [[ -e $SYSM_INCLUDE ]]; then
-    echo "echo '$SYSM_INCLUDE is not configured. Consider reading https://github.com/nunzayin/sysmaint#configuring'" > $SYSM_INCLUDE
+    sysm_log "[SYSM] $INCLUDE_ERR"
+    echo "echo '$INCLUDE_ERR'" > $SYSM_INCLUDE
 fi
 . $SYSM_INCLUDE
 
+sysm_log "[SYSM] Sysmaint iteration complete at $(date)"
+dline
 exit 0

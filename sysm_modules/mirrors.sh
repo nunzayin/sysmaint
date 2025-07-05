@@ -8,6 +8,6 @@ if module_prolog; then
     if [[ $(cat /etc/pacman.d/mirrorlist.new | wc -l 2>> "$OUT") -gt 2 ]]; then
         sudo rename mirrorlist.new mirrorlist /etc/pacman.d/mirrorlist.new 2>> "$OUT"
     else
-        echo "Errors were encountered when generating mirrorlist" &>> "$OUT"
+        sysm_log "Errors were encountered when generating mirrorlist"
     fi
 fi
