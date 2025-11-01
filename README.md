@@ -1,3 +1,8 @@
+Archived for being too ugly. Sorry.
+
+You can look for its legacy at
+[my dotfiles](https://github.com/nunzayin/dotfiles/)
+
 # `sysmaint.sh`
 
 This is a bash script that provides a simple framework for creating and executing
